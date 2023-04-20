@@ -52,6 +52,7 @@ person.save().then(result => {
   //const Person = mongoose.model('Person', noteSchema)
 
   app.get('/api/persons', (request, response) => {
+    console.log('tulee renderiin --> yritys db')
     Person.find({}).then(items => {
    
       response.json(items)
