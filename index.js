@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const Person = require('./models/person')
 const app = express()
+ 
   //Expressiin sisäänrakennettua middlewarea static näyttää
 //staattista sisältöä eli sivun index.html ja sen lataaman JavaScriptin 
 //tarkistaa build kansiosta index.html
@@ -30,23 +31,21 @@ app.use(cors())
 //Middlewaret tulee ottaa käyttöön ennen routeja
 app.use(requestLogger)
  
-//const url =
-//`mongodb+srv://milky:${felDB}@milkyway.sgse8eg.mongodb.net/Phonebook?retryWrites=true&w=majority`
+ 
 
-/*Person.find({}).then(result => {
+Person.find({}).then(result => {
   result.forEach(item => {
     console.log(item)
   })
   mongoose.connection.close()
-})*/
-/*
-person.save().then(result => {
+})
+
+Person.save().then(result => {
   console.log('person saved!')
   mongoose.connection.close()
 })
-*/
- 
- 
+
+
   //kutsuu jokaiselle tietokannasta luettavalle muistiinpanolle 
   //automaattisesti metodia toJSON muodostaessaan vastausta.
   //const Person = mongoose.model('Person', noteSchema)
@@ -111,10 +110,7 @@ person.save().then(result => {
       })
       .catch(error => next(error))
   })
-  /*const generateId = () => {
   
-    return Math.floor(Math.random()*10000000)
-  }*/
   
   app.post('/api/persons', (request, response) => {
     const body = request.body
