@@ -39,11 +39,16 @@ Person.find({}).then(result => {
   })
   mongoose.connection.close()
 })
-
-Person.save().then(result => {
+/*
+const person = new Person({
+  name: 'Samuli',
+  number: '34566'
+})
+person.save().then(result => {
   console.log('person saved!')
   mongoose.connection.close()
 })
+ */
 
 
   //kutsuu jokaiselle tietokannasta luettavalle muistiinpanolle 
