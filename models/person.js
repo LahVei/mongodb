@@ -5,7 +5,7 @@ const url = process.env.MONGODB_URI
 console.log('connecting to', process.env.MONGODB_URI)
 console.log('connecting to', process.env.PORT)
 //mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebook?retryWrites=true&w=majority
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(url)
 .then(result => {
   console.log('connected to MongoDB')
 })
