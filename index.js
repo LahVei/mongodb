@@ -33,12 +33,13 @@ app.use(requestLogger)
  
  
 //Mongo haetaan data tietokannasta ja tulostetaan konsoliin
+/*
 Person.find({}).then(result => {
   result.forEach(item => {
     console.log(item)
-  })
-  
+  }) 
 })
+*/
 /*
 const person = new Person({
   name: 'Samuli',
@@ -59,17 +60,20 @@ person.save().then(result => {
     console.log('tulee renderiin --> user app yritys haku db')
     Person.find({})
     .then(items => {
-      response.json(items)
+      //response.json(items)
+      items.forEach(item => {
+        console.log(item)
+      }) 
     //virhetilanteen käsittelyä siirretään eteenpäin funktiolla next
     .catch(error => next(error))
     })
   })
  
   
-  app.get('/', (req, res) => {
+  /*app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
   })
-  
+  */
   app.get('/api/persons/:id', (request, response, next) => {
     Person.findById(request.params.id)
       .then(person => {
@@ -120,8 +124,8 @@ person.save().then(result => {
   
   
   app.post('/api/persons', (request, response) => {
-    const body = request.body
     console.log('user lisäys tietokantaan')
+    const body = request.body
       if (!body.name) {
      //returnin kutsuminen on tärkeää. Ilman kutsua koodi jatkaisi suoritusta metodin 
     //loppuun asti, ja virheellinen muistiinpano tallettuisi!
