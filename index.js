@@ -28,11 +28,11 @@ const requestLogger = (request, response, next) => {
   next()
 }
 app.use(cors())
-//Middlewaret tulee ottaa käyttöön ennen routeja
+//Middleware tulee ottaa käyttöön ennen routeja
 app.use(requestLogger)
  
  
-//haetaan data tietokannasta ja tulostetaan
+//Mongo haetaan data tietokannasta ja tulostetaan konsoliin
 Person.find({}).then(result => {
   result.forEach(item => {
     console.log(item)
@@ -57,9 +57,11 @@ person.save().then(result => {
 
   app.get('/api/persons', (request, response) => {
     console.log('tulee renderiin --> user app yritys haku db')
-    Person.find({}).then(items => {
-   
+    Person.find({})
+    .then(items => {
       response.json(items)
+    //virhetilanteen käsittelyä siirretään eteenpäin funktiolla next
+    .catch(error => next(error))
     })
   })
  
@@ -119,17 +121,17 @@ person.save().then(result => {
   
   app.post('/api/persons', (request, response) => {
     const body = request.body
-   console.log('user lisäys tietokantaan')
-    if (!body.name) {
-    //returnin kutsuminen on tärkeää. Ilman kutsua koodi jatkaisi suoritusta metodin 
+    console.log('user lisäys tietokantaan')
+      if (!body.name) {
+     //returnin kutsuminen on tärkeää. Ilman kutsua koodi jatkaisi suoritusta metodin 
     //loppuun asti, ja virheellinen muistiinpano tallettuisi!
-      return response.status(400).json({ 
-        error: 'name missing' 
-      })
-    }
-    if (!body.number) {
-      //returnin kutsuminen on tärkeää. Ilman kutsua koodi jatkaisi suoritusta metodin 
-      //loppuun asti, ja virheellinen muistiinpano tallettuisi!
+        return response.status(400).json({ 
+          error: 'name missing' 
+        })
+      }
+      if (!body.number) {
+        //returnin kutsuminen on tärkeää. Ilman kutsua koodi jatkaisi suoritusta metodin 
+        //loppuun asti, ja virheellinen muistiinpano tallettuisi!
         return response.status(400).json({ 
           error: 'number missing' 
         })
@@ -144,10 +146,11 @@ person.save().then(result => {
         name: body.name,
         number: body.number || 0,
       })
-    //persons = persons.concat(person)
-    person.save().then(savedPerson => {
-      response.json(savedPerson )
+      //persons = persons.concat(person)
+      person.save().then(savedPerson => {
+        response.json(savedPerson )
     })
+     
   })
   // numeron vaihto
   app.put('/api/persons/:id', (request, response) => {
@@ -186,7 +189,7 @@ app.use(unknownEndpoint)
 /*app.listen(PORT)
 console.log(`Server running on port ${PORT}`)*/
 //Ympäristömuuttja
-const PORT = process.env.PORT
+const PORT = process.env.PORT||3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

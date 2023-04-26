@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 require('dotenv').config()
 const url = process.env.MONGODB_URI
-console.log('connecting to', process.env.MONGODB_URI)
+console.log('connecting to', url)
 console.log('connecting to', process.env.PORT)
 //mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebook?retryWrites=true&w=majority
 mongoose.connect('mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebook?retryWrites=true&w=majority')
@@ -24,9 +24,9 @@ mongoose.connect('mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebo
     noteSchema.set('toJSON', {
         transform: (document, returnedObject) => {
           returnedObject.id = returnedObject._id.toString()
-          delete returnedObject._id
-          delete returnedObject.__v
+          delete returnedObject._id;
+          delete returnedObject.__v;
         }
       })
-    const Person = mongoose.model('Person', noteSchema)
+    //const Person = mongoose.model('Person', noteSchema)
     module.exports = mongoose.model('Person', noteSchema)
