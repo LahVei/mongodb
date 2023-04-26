@@ -28,7 +28,7 @@ const requestLogger = (request, response, next) => {
   next()
 }
 app.use(cors())
-//Middleware tulee ottaa käyttöön ennen routeja
+//tämä middleware tulee ottaa käyttöön ennen routeja
 app.use(requestLogger)
  
  
@@ -37,7 +37,7 @@ Person.find({}).then(result => {
   result.forEach(item => {
     console.log(item)
   })
-  mongoose.connection.close()
+  
 })
 /*
 const person = new Person({
