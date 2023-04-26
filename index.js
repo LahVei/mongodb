@@ -32,7 +32,7 @@ app.use(cors())
 app.use(requestLogger)
  
  
-
+//haetaan data tietokannasta ja tulostetaan
 Person.find({}).then(result => {
   result.forEach(item => {
     console.log(item)
@@ -56,7 +56,7 @@ person.save().then(result => {
   //const Person = mongoose.model('Person', noteSchema)
 
   app.get('/api/persons', (request, response) => {
-    console.log('tulee renderiin --> yritys db')
+    console.log('tulee renderiin --> user app yritys haku db')
     Person.find({}).then(items => {
    
       response.json(items)
@@ -119,7 +119,7 @@ person.save().then(result => {
   
   app.post('/api/persons', (request, response) => {
     const body = request.body
-   
+   console.log('user lisäys tietokantaan')
     if (!body.name) {
     //returnin kutsuminen on tärkeää. Ilman kutsua koodi jatkaisi suoritusta metodin 
     //loppuun asti, ja virheellinen muistiinpano tallettuisi!
