@@ -18,6 +18,7 @@ app.use(express.json())
 // json-parseri tulee ottaa käyttöön ennen middlewarea requestLogger, 
 //muuten request.body ei ole vielä alustettu loggeria suoritettaessa!
 require('dotenv').config()
+console.log('nyt backendissä')
 
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
