@@ -55,8 +55,8 @@ person.save().then(result => {
   //kutsuu jokaiselle tietokannasta luettavalle muistiinpanolle 
   //automaattisesti metodia toJSON muodostaessaan vastausta.
   //const Person = mongoose.model('Person', noteSchema)
-
-  app.get('/api/persons', (request, response) => {
+   
+    app.get('/api/persons', (request, response,next) => {
     console.log('tulee renderiin --> user app yritys haku db')
     Person.find({})
     .then(items => {
