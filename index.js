@@ -61,16 +61,12 @@ person.save().then(result => {
     console.log('tulee renderiin --> user app yritys haku db')
     Person.find({})
     .then(items => {
-      //response.json(items)
-      items.forEach(item => {
-        console.log(item)
-      }) 
+      response.json(items)
     //virhetilanteen käsittelyä siirretään eteenpäin funktiolla next
     .catch(error => next(error))
     })
   })
- 
-  
+   
   /*app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
   })
