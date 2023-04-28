@@ -62,9 +62,10 @@ person.save().then(result => {
     Person.find({})
     .then(items => {
       response.json(items)
-    //virhetilanteen käsittelyä siirretään eteenpäin funktiolla next
-    .catch(error => next(error))
+ 
     })
+       //virhetilanteen käsittelyä siirretään eteenpäin funktiolla next
+       .catch(error => next(error))
   })
    
   /*app.get('/', (req, res) => {
