@@ -16,17 +16,16 @@ mongoose.connect('mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebo
 //poistetaan versio kenttä __v (todellisuudessa olio ei string)
 //toJSON muuttaa sen merkkijonoksi 
 
-   
-    const noteSchema = new mongoose.Schema({
-        name: String,
-        number: String,
-    })
-    noteSchema.set('toJSON', {
-        transform: (document, returnedObject) => {
-          returnedObject.id = returnedObject._id.toString()
-          delete returnedObject._id;
-          delete returnedObject.__v;
-        }
-      })
-    //const Person = mongoose.model('Person', noteSchema)
-    module.exports = mongoose.model('Person', noteSchema)
+const noteSchema = new mongoose.Schema({
+    name: String,
+    number: String,
+  })
+noteSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+      returnedObject.id = returnedObject._id.toString()
+      delete returnedObject._id;
+      delete returnedObject.__v;
+    }
+  })
+//const Person = mongoose.model('Person', noteSchema)
+module.exports = mongoose.model('Person', noteSchema)
