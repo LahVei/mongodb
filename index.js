@@ -7,7 +7,7 @@ app.use(express.static('build'))
 app.use(express.json())
 
 require('dotenv').config()
-console.log('nyt backendissä')
+console.log('nyt backendissä ollaan')
 
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
