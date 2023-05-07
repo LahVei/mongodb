@@ -87,7 +87,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
       number: body.number || 0,
     })
     
-    Person.save().then(savedPerson => {
+    person.save().then(savedPerson => {
       response.json(savedPerson )
     })
     .catch(error=>{
