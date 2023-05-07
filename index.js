@@ -67,8 +67,9 @@ app.delete('/api/persons/:id', (request, response, next) => {
       next(error)
     })
 })
-
-app.post('/api/persons', (request, response) => {
+// return axios.post(baseUrl,newPerson).then(res=>res.data)
+//app.get('/api/persons', (request, response,next) => {
+ app.post('/api/persons', (request, response) => {
   console.log('data lisäys tietokantaan')
   const body = request.body
     if (!body.name) {
@@ -86,7 +87,7 @@ app.post('/api/persons', (request, response) => {
       number: body.number || 0,
     })
     
-    person.save().then(savedPerson => {
+    Person.save().then(savedPerson => {
       response.json(savedPerson )
     })
     .catch(error=>{
