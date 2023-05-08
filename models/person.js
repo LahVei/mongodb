@@ -4,7 +4,7 @@ mongoose.set('strictQuery', false)
 const url = process.env.MONGODB_URI
 console.log('connecting to', url)
  
-mongoose.connect(url)
+mongoose.connect('mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebook?retryWrites=true&w=majority')
 .then(result => {
   console.log('connected to MongoDB')
 })
