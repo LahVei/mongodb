@@ -19,7 +19,7 @@ mongoose.connect('mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebo
 const noteSchema = new mongoose.Schema({
   name: {
     type: String,
-    minlength: 4,
+    minlength: 3,
     required: true
   },
     number: String,
