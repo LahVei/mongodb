@@ -17,9 +17,14 @@ mongoose.connect('mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebo
 //toJSON muuttaa sen merkkijonoksi 
 
 const noteSchema = new mongoose.Schema({
-    name: String,
+  name: {
+    type: String,
+    minlength: 4,
+    required: true
+  },
     number: String,
   })
+
 noteSchema.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
