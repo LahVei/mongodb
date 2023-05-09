@@ -20,7 +20,7 @@ const requestLogger = (request, response, next) => {
 
 app.use(requestLogger)
  
-app.get('/api/persons', (request, response,next) => {
+app.get('/api/persons', (request, response, next) => {
 console.log('tulee renderiin --> user haku db')
 Person.find({})
 .then(items => {
@@ -43,7 +43,7 @@ app.get('/api/persons/:id', (request, response, next) => {
       next(error)
     })
 })
-app.get('/api/info', (request, response) => {
+app.get('/api/info', (request, response, next) => {
   Person.find({})
   .then(items => {
     const pituus = items.length
@@ -86,7 +86,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
     })
   
 })
-app.put('/api/persons/:id', (request, response,next) => {
+app.put('/api/persons/:id', (request, response, next) => {
   const { name, number } = request.body
 
   Person.findByIdAndUpdate(
@@ -107,6 +107,7 @@ const unknownEndpoint = (request, response) => {
 app.use(unknownEndpoint)
 
 const errorHandler = (error, request, response, next) => {
+  console.log('error käsittely')
   console.error(error.message)
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
