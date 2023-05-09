@@ -12,20 +12,13 @@ mongoose.connect('mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebo
   console.log('error connecting to MongoDB:', error.message)
 })
 // muokataan kannasta haettavilla olioilla olevan toJSON-metodin palauttamaa muotoa
-<<<<<<< HEAD
 //poistetaan versio kenttä __v (todellisuudessa olio ei string)
 //toJSON muuttaa sen merkkijonoksi 
-=======
 // poistetaan versio kenttä __v (todellisuudessa olio ei string)
 // toJSON muuttaa sen merkkijonoksi 
->>>>>>> 8e8ca4d1600882fe4e157663bfacbf7b3a5458ba
 
 const noteSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    minlength: 3,
-    required: true
-  },
+  name: String,
     number: String,
   })
 
