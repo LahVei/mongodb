@@ -12,7 +12,7 @@ mongoose.connect('mongodb+srv://milky:felDB@milkyway.sgse8eg.mongodb.net/Phonebo
 .catch((error) => {
   console.log('error connecting to MongoDB:', error.message)
 })
-//muokataan kannasta haettavilla olioilla olevan toJSON-metodin palauttamaa muotoa
+// muokataan kannasta haettavilla olioilla olevan toJSON-metodin palauttamaa muotoa
 //poistetaan versio kenttä __v (todellisuudessa olio ei string)
 //toJSON muuttaa sen merkkijonoksi 
 
